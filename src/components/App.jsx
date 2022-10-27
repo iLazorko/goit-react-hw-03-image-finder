@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { GlobalStyle } from './GlobalStyle.js';
 import { Loader } from './Loader/Loader';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
@@ -6,10 +7,9 @@ import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
 import { fetchImages } from '../Api';
 import { Button } from './Button/Button';
 import { Modal } from './Modal/Modal';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { nanoid } from 'nanoid';
+import { Wrapper } from './App.styled.js';
 
 export class App extends Component {
   state = {
@@ -114,10 +114,14 @@ export class App extends Component {
   };
 
   render() {
-    const { images, isLoading, totalHits, modal, error } = this.state;
+    const { images, isLoading, totalHits, modal, error, searchValue } =
+      this.state;
     return (
-      <>
-        <Searchbar updateStateQuery={this.updateStateQuery} />
+      <Wrapper>
+        <Searchbar
+          updateStateQuery={this.updateStateQuery}
+          searchValue={searchValue}
+        />
         {error && toast.error(`Whoops, something went wrong: ${error.message}`)}
         {images.length > 0 && (
           <ImageGallery>
@@ -152,7 +156,8 @@ export class App extends Component {
           pauseOnHover
           theme="colored"
         />
-      </>
+        <GlobalStyle />
+      </Wrapper>
     );
   }
 }

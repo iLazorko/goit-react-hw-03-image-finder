@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Overlay, ModalWindow } from './Modal.styled.js';
 
 export class Modal extends Component {
   componentDidMount() {
@@ -22,14 +23,15 @@ export class Modal extends Component {
   };
 
   render() {
-    const { largeImageURL, tags } = this.props.dataModal;
+    const { largeImgURL, tag } = this.props.dataModal;
+    console.log(this.props);
 
     return (
-      <div className="overlay" onClick={this.handleBackdropClick}>
-        <div className="modal">
-          <img src={largeImageURL} alt={tags} />
-        </div>
-      </div>
+      <Overlay onClick={this.handleBackdropClick}>
+        <ModalWindow>
+          <img src={largeImgURL} alt={tag} />
+        </ModalWindow>
+      </Overlay>
     );
   }
 }

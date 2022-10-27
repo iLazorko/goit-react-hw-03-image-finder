@@ -1,7 +1,9 @@
-export const Button = ({ moreImages, getImages }) => {
+import { LoadMoreBtn } from './Button.styled.js';
+
+export const Button = ({ moreImages }) => {
   return (
-    <button type="button" onClick={moreImages}>
+    <LoadMoreBtn type="button" onClick={moreImages}>
       Load more
-    </button>
+    </LoadMoreBtn>
   );
 };
